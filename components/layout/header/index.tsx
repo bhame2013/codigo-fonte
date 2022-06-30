@@ -1,22 +1,9 @@
-import { useEffect, useState } from "react";
-
-import Link from "next/link";
-import { useRouter } from "next/router";
-
-import { Container, SearchComponent } from "components/data/components"
-
 import * as S from "./styles";
 
-interface Header {
-  headerAbsolute?: boolean;
-}
-
-export function HeaderComponent({ headerAbsolute }: Header) {
-
-
+export function HeaderComponent() {
   return (
     <S.Header>
- 
+          <h3 className="paragraph-1-semibold">Documentation</h3>
     </S.Header>
   );
 }

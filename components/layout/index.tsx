@@ -1,24 +1,18 @@
-import { HeaderComponent } from './header';
-import { FooterComponent } from './footer';
+import { HeaderComponent } from "./header";
+import { FooterComponent } from "./footer";
 
 interface LayoutProps {
-    children?: React.ReactNode;
-    headerAbsolute?: boolean
-    newsletter?: boolean
+  children?: React.ReactNode;
 }
 
-export  function Layout({ children , headerAbsolute, newsletter}: LayoutProps) {
-    return (
-        <>
-            <HeaderComponent headerAbsolute={headerAbsolute} />
+export function Layout({ children }: LayoutProps) {
+  return (
+    <>
+      <HeaderComponent />
 
-            {children}
+      {children}
 
-            <FooterComponent newsletter={newsletter}/>
-        </>
-    );
+      <FooterComponent />
+    </>
+  );
 }
-
-
-
-

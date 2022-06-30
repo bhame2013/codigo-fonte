@@ -1,12 +1,12 @@
 @font-face {
-    font-family: '';
-    src: url('/fonts/') format('truetype');
-    font-weight: 700;
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Black.ttf') format('truetype');
+    font-weight: 900;
     font-display: swap;
 }
 
-[class*="cinzel"] {
-    font-family: Cinzel;
+body {
+    font-family: 'Inter' !important;
 }
 
 h1,
