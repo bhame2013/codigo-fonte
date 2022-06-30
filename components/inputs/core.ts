@@ -5,7 +5,6 @@ import { YupValidation } from "src/utils/yup-validation";
 
 import { RadioInput } from "./radios";
 import { InputComponent } from "./input";
-import { InputEditComponent } from "./input-edit";
 import { TextAreaComponent } from "./textarea";
 
 export {
@@ -13,7 +12,6 @@ export {
   YupValidation,
   RadioInput,
   InputComponent,
-  InputEditComponent,
   TextAreaComponent,
 };
 

@@ -41,8 +41,6 @@ export default function HomePage() {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { "auth.token": token } = nookies.get(ctx);
 
-  console.log(token);
-
   if (!token) {
     return {
       redirect: { destination: "/login" },
