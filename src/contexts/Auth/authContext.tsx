@@ -45,6 +45,8 @@ function AuthProvider({ children }) {
           const token = credential?.accessToken;
           const user = result.user;
 
+          setUser(user)
+
           cookie.set("auth.token", token, {
             expires: 1,
           });
