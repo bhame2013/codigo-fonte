@@ -16,8 +16,7 @@ import {
   provider,
   signInWithPopup,
 } from "../../configs/firebaseConfig";
-
-import { User } from "./interfaces";
+import { User } from "firebase/auth";
 
 interface ContextProps {
   user: User | null;

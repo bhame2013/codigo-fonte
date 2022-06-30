@@ -12,6 +12,10 @@ import { GetServerSideProps } from "next";
 const exampleCollection = collection(database, "examples");
 
 export default function HomePage() {
+  const { user } = useAuth();
+
+  console.log(user);
+
   // async function getNotes() {
   //   return await getDocs(exampleCollection).then((data) => {
   //     const dataExamples = data.docs.map((doc) => ({
@@ -27,7 +31,11 @@ export default function HomePage() {
   //   getNotes();
   // }, []);
 
-  return <Layout>home</Layout>;
+  return (
+    <Layout>
+      {user?.photoURL && <img src={user.photoURL} />} Hello {user?.displayName}
+    </Layout>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
