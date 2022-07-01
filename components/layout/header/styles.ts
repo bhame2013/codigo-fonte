@@ -35,12 +35,14 @@ export const Header = styled.header`
           overflow: hidden;
           cursor: pointer;
           border-radius: 100%;
+    
+          background-image: linear-gradient(to right, rgba(255, 0, 66, 1), rgba(9, 9, 121, 1), rgba(255, 0, 66, 1), rgba(255, 0, 66, 1));
+          background-size: 300% 100%;
+          transition: all 0.4s ease-in-out 0s;
+        }
 
-          background: linear-gradient(
-            90deg,
-            rgba(255, 0, 66, 1) 0%,
-            rgba(9, 9, 121, 1) 100%
-          );
+        .ball:hover {
+          background-size: 500% 100%;
         }
 
         /* img {
@@ -74,7 +76,6 @@ export const Header = styled.header`
           justify-content: space-between;
           z-index: 100;
 
-          .new-code,
           .new-code {
             color: #fff;
             width: 100%;
