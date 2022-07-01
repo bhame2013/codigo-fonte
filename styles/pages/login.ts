@@ -8,6 +8,7 @@ export const Login = styled.div`
   flex-direction: column;
   min-height: 100vh;
   padding: 30px 0;
+  background-color: #fff;
 
   h3 {
     text-transform: uppercase;

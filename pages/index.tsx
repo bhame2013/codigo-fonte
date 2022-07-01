@@ -7,14 +7,12 @@ import { database } from "src/configs/firebaseConfig";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
 import { useAuth } from "src/contexts/Auth/authContext";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
 
 const exampleCollection = collection(database, "examples");
 
 export default function HomePage() {
   const { user } = useAuth();
-
-  console.log(user);
 
   // async function getNotes() {
   //   return await getDocs(exampleCollection).then((data) => {
@@ -31,15 +29,11 @@ export default function HomePage() {
   //   getNotes();
   // }, []);
 
-  return (
-    <Layout>
-      {user?.photoURL && <img src={user.photoURL} />} Hello {user?.displayName}
-    </Layout>
-  );
+  return <Layout></Layout>;
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { "auth.token": token } = nookies.get(ctx);
+export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
+   const { "auth.token": token } = nookies.get(ctx);
 
   if (!token) {
     return {

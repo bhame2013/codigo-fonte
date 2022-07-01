@@ -15,8 +15,9 @@ import {
   getAuth,
   provider,
   signInWithPopup,
+  signOut
 } from "../../configs/firebaseConfig";
-import { User } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 
 interface ContextProps {
   user: User | null;
@@ -45,7 +46,7 @@ function AuthProvider({ children }) {
           const token = credential?.accessToken;
           const user = result.user;
 
-          setUser(user)
+          setUser(user);
 
           cookie.set("auth.token", token, {
             expires: 1,
@@ -59,10 +60,6 @@ function AuthProvider({ children }) {
           setLoading(false);
         })
         .catch((error) => {
-          // const errorCode = error.code;
-          // const errorMessage = error.message;
-          // const email = error.customData.email;
-          // const credential = GoogleAuthProvider.credentialFromError(error);
           console.log(error);
           setLoading(false);
         });
@@ -72,20 +69,26 @@ function AuthProvider({ children }) {
   };
 
   const signout = async () => {
-    try {
-      Router.push("/");
-      await auth.signOut();
-    } finally {
-      setLoading(false);
-    }
+    await signOut(auth)
+      .then(() => {
+        cookie.remove("auth.user");
+        cookie.remove("auth.token");
+        Router.push("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  useEffect(() => {
-    const user = cookie.get("auth.user");
 
-    if (user) {
-      setUser(JSON.parse(user));
-    }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+      setUser(currentuser);
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
