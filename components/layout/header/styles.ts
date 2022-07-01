@@ -51,6 +51,15 @@ export const Header = styled.header`
           display: none;
         } */
 
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: calc(3 * 100vh);
+          width: calc(3 * 100vw);
+          z-index: 99;
+        }
+
         .settings {
           position: absolute;
           right: 0;
@@ -58,13 +67,14 @@ export const Header = styled.header`
           border: 1px solid #333;
           border-radius: 8px;
           width: 200px;
-          z-index: 10;
           background-color: #000;
           overflow: hidden;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          z-index: 100;
 
+          .new-code,
           .new-code {
             color: #fff;
             width: 100%;
@@ -94,11 +104,11 @@ export const Header = styled.header`
             color: #fff;
             padding-left: 20px;
             padding-bottom: 3px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
           }
 
           .signOut:hover {
-            background-color: rgba(255,255,255,0.02);
+            background-color: rgba(255, 255, 255, 0.02);
           }
         }
       }
