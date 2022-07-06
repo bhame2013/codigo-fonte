@@ -69,9 +69,7 @@ export default function LoginPage() {
       <div className="socials">
         <Form ref={formRef} onSubmit={HandleSubmit}>
           {error.length > 0 && (
-            <p className="error paragraph-3-regular error-message">
-              {error}
-            </p>
+            <p className="error paragraph-3-regular error-message">{error}</p>
           )}
 
           <InputComponent

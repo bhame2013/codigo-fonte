@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { parseCookies } from "nookies";
 
-const apiURL = "http://localhost:3000/";
+const apiURL = process.env.API_URL;
 
 export function getAPIClient(ctx?: any) {
   const { "auth.token": token } = parseCookies(ctx);
