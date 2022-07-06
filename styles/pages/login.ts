@@ -20,5 +20,15 @@ export const Login = styled.div`
     background-color: #161b22;
     padding: 20px;
     border-radius: 8px;
+    max-width: 300px;
+    width: 100%;
+
+    p.error {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+    }
   }
 `;

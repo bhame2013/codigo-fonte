@@ -34,7 +34,11 @@ function AuthProvider({ children }) {
       const data = await api.post("/login", { email, password });
 
       if (data?.status !== 200) {
-        throw new Error(JSON.parse(data.request.response)?.message);
+        if (data.request.response) {
+          throw new Error(JSON.parse(data.request.response).message);
+        }
+
+        throw new Error("Ocorreu um erro tente novamente mais tarde.");
       }
 
       if (data) {
