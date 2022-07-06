@@ -5,7 +5,7 @@ import * as S from "./styles";
 
 export function HeaderComponent() {
   const [settings, setSettings] = useState(false);
-  const { user, signout } = useAuth();
+  const { user, signOut } = useAuth();
 
   return (
     <S.Header>
@@ -54,22 +54,19 @@ export function HeaderComponent() {
                     <button
                       type="button"
                       className="signOut paragraph-3-semibold"
-                      onClick={signout}
+                      onClick={() => signOut("/login")}
                     >
                       Sign out
                     </button>
                   </div>
 
-                  <div className="overlay" onClick={() => setSettings(false)}/>
+                  <div className="overlay" onClick={() => setSettings(false)} />
                 </>
               )}
             </div>
           </div>
         </div>
       </div>
-
-      <div className="sidebar"></div>
-      <h3 className="paragraph-1-semibold">Documentation</h3>
     </S.Header>
   );
 }

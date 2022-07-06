@@ -1,7 +1,7 @@
 
 import { LoaderComponent } from "./loader";
 import { LoaderCircle } from "./loader-circle";
-import { ButtonGoogle } from "./socials/buttonGoogle";
+import { NotificationComponent } from "./notification"
+import { SearchComponent } from "./search"
 
-
-export { ButtonGoogle, LoaderCircle, LoaderComponent }
+export { SearchComponent, LoaderCircle, LoaderComponent, NotificationComponent }

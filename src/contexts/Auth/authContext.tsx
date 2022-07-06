@@ -6,99 +6,70 @@ import {
   SetStateAction,
   Dispatch,
 } from "react";
-import Router from "next/router";
+import { getCookie, setCookie } from "src/utils/cookies";
+import { api } from "src/api";
+import { useRouter } from "next/router";
+import _ from "lodash";
 
-import cookie from "js-cookie";
-
-import {
-  GoogleAuthProvider,
-  getAuth,
-  provider,
-  signInWithPopup,
-  signOut
-} from "../../configs/firebaseConfig";
-import { onAuthStateChanged, User } from "firebase/auth";
+interface PayloadLogin {
+  email: string;
+  password: string;
+}
 
 interface ContextProps {
-  user: User | null;
-  loading: boolean;
-  signinGoogle: () => Promise<void>;
-  signout: () => Promise<void>;
-  setLoading: Dispatch<SetStateAction<boolean>>;
+  user: any | null;
+  signIn: (payload: PayloadLogin) => Promise<void>;
+  signOut: (location: string) => void;
 }
 
 const AuthContext = createContext({} as ContextProps);
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<any | null>(null);
 
-  const auth = getAuth();
-  auth.languageCode = "pt-BR";
+  const router = useRouter();
 
-  const signinGoogle = async () => {
+  async function signIn({ email, password }: PayloadLogin) {
     try {
-      setLoading(true);
+      const data = await api.post("/login", { email, password });
 
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential?.accessToken;
-          const user = result.user;
+      if (data?.status !== 200) {
+        throw new Error(JSON.parse(data.request.response)?.message);
+      }
 
-          setUser(user);
+      if (data) {
+        setCookie("auth.token", data.data.access_token, 30);
 
-          cookie.set("auth.token", token, {
-            expires: 1,
-          });
-
-          cookie.set("auth.user", JSON.stringify(user), {
-            expires: 1,
-          });
-
-          Router.push("/");
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          setLoading(false);
-        });
-    } catch {
-      setLoading(false);
+        api.defaults.headers[
+          "Authorization"
+        ] = `Bearer ${data.data.access_token}`;
+      }
+    } catch (e) {
+      throw e;
     }
-  };
+  }
 
-  const signout = async () => {
-    await signOut(auth)
-      .then(() => {
-        cookie.remove("auth.user");
-        cookie.remove("auth.token");
-        Router.push("/login");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  function signOut(location: string) {
+    const existCookie = getCookie("auth.token");
 
+    if (existCookie) {
+      document.cookie =
+        "auth.token" + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      setUser(currentuser);
-    });
+      api.defaults.headers["Authorization"] = `Bearer `;
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+      setUser(null);
+
+      router.push(location);
+    }
+  }
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        loading,
-        signinGoogle,
-        signout,
-        setLoading,
+        signIn,
+        signOut,
       }}
     >
       {children}

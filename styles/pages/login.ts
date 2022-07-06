@@ -8,17 +8,17 @@ export const Login = styled.div`
   flex-direction: column;
   min-height: 100vh;
   padding: 30px 0;
-  background-color: #fff;
+  background-color: #0d1117;
 
   h3 {
-    text-transform: uppercase;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 0, 66, 1) 0%,
-      rgba(9, 9, 121, 1) 100%
-    );
-    color: var(--primary-color);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+
+  form {
+    border: 1px solid #21262d;
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 8px;
   }
 `;

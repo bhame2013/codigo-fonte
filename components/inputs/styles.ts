@@ -85,16 +85,21 @@ export const Input = styled.div`
 
   input,
   textarea {
-    width: 100%;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 0 20px;
-    color: rgba(255, 255, 255, 1);
-    border: 0;
+    padding: 0 12px;
+    line-height: 20px;
+    color: #c9d1d9;
+    vertical-align: middle;
+    background-color: #0d1117;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    font-size: 13px;
+    min-width: 250px;
   }
 
   input {
-    height: 60px;
+    height: 38px;
   }
 
   input:read-only {
@@ -109,7 +114,7 @@ export const Input = styled.div`
 
   input::placeholder,
   textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+    color: #c9d1d9;
   }
 
   .eye {
@@ -122,101 +127,13 @@ export const Input = styled.div`
     display: flex;
 
     svg {
-      width: 20px;
+      width: 15px;
       height: auto;
-      color: var(--theme-color);
+      color: #c9d1d9;
     }
   }
 
-  @media only screen and (max-width: 1600px) {
-    margin-bottom: 18px;
 
-    input,
-    textarea {
-      padding: 0 18px;
-    }
-
-    input {
-      height: 57px;
-    }
-
-    textarea {
-      height: 215px;
-      padding-top: 17px;
-    }
-  }
-
-  @media only screen and (max-width: 1400px) {
-    margin-bottom: 17px;
-
-    input,
-    textarea {
-      padding: 0 16px;
-    }
-
-    input {
-      height: 54px;
-    }
-
-    textarea {
-      height: 200px;
-      padding-top: 16px;
-    }
-  }
-
-  @media only screen and (max-width: 1200px) {
-    margin-bottom: 16px;
-
-    input,
-    textarea {
-      padding: 0 15px;
-    }
-
-    input {
-      height: 52px;
-    }
-
-    textarea {
-      height: 180px;
-      padding-top: 15px;
-    }
-  }
-
-  @media only screen and (max-width: 1024px) {
-    margin-bottom: 15px;
-
-    input,
-    textarea {
-      padding: 0 14px;
-    }
-
-    input {
-      height: 48px;
-    }
-
-    textarea {
-      height: 160px;
-      padding-top: 14px;
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-    margin-bottom: 13px;
-
-    input,
-    textarea {
-      padding: 0 12px;
-    }
-
-    input {
-      height: 44px;
-    }
-
-    textarea {
-      height: 100px;
-      padding-top: 12px;
-    }
-  }
 `;
 
 export const InputEdit = styled.div`
@@ -271,7 +188,7 @@ export const InputRadio = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-bottom: 15px;
-  
+
   .error-message {
     margin-top: -5px;
   }

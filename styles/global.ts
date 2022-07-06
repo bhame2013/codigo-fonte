@@ -39,13 +39,12 @@ body::-webkit-scrollbar-thumb:hover {
     outline: transparent !important;
 }
 
-
-
 .error-message {
-    font-size: 13px;
+    font-size: 12px;
     color: #db3232;
     text-align: left;
     margin-top: 5px;
+    padding: 0 10px;
 }
 
 .uppercase {
@@ -77,7 +76,6 @@ a:hover::before {
 ol,
 ul {
     list-style: none !important;
-    padding-left: 0 !important;
     margin-bottom: 0 !important;
 }
 
