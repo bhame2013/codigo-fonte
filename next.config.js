@@ -7,4 +7,7 @@ module.exports = {
       "https://master-of-miniatures.vercel.app/",
     ],
   },
+  env: {
+    API: process.env.API,
+  },
 };

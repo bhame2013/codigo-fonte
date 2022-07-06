@@ -1,13 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 import { parseCookies } from "nookies";
-
-const apiURL = process.env.API_URL;
 
 export function getAPIClient(ctx?: any) {
   const { "auth.token": token } = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: apiURL,
+    baseURL: process.env.API,
   });
 
   api.interceptors.request.use((config) => {
@@ -31,13 +29,13 @@ export function getAPIClient(ctx?: any) {
 
         api.defaults.headers["Authorization"] = `Bearer `;
 
-        window.location.href = '/login';
+        window.location.href = "/login";
       }
 
       return error;
     }
   );
-  
+
   if (token) {
     api.defaults.headers["Authorization"] = `Bearer ${token}`;
   }
