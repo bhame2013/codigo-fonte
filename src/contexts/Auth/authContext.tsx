@@ -41,6 +41,10 @@ function AuthProvider({ children }) {
         throw new Error("Ocorreu um erro tente novamente mais tarde.");
       }
 
+      if(!data?.status) {
+        throw new Error("Ocorreu um erro tente novamente mais tarde.");
+      }
+
       if (data) {
         setCookie("auth.token", data.data.access_token, 30);
 
